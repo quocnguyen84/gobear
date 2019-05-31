@@ -3,6 +3,7 @@
   <groupId>com.techassessment</groupId>
   <artifactId>gobear</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
   <name>Go Bear Test</name>
   
   <dependencies>
