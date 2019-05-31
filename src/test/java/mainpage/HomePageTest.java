@@ -11,32 +11,34 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import org.apache.commons.io.FileUtils;
 
 public class HomePageTest {
 	
 	@Test
-	public void testHomePage() throws InterruptedException {
+	public void testHomePage() throws Exception {
 		System.out.println("Prepare Test");
 		System.setProperty("webdriver.chrome.driver",
 				"./src/test/resources/driver/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		System.out.println("Prepare navigating to gobear.com");
 		driver.get("https://www.gobear.com/ph?x_session_type=UAT");
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		System.out.println("At gobear.com");
+		takeSnapShot(driver, "./screenshots/3.png");     
 		WebElement btnShowResult = driver.findElement(By.name("product-form-submit"));
 		if (btnShowResult != null) {
 			btnShowResult.click();
 		}
 		
 		System.out.println("Before sleep");
-		Thread.sleep(10000);
+		Thread.sleep(2000);
+		takeSnapShot(driver, "./screenshots/4.png");
 		System.out.println("After sleep");
 		driver.close();
 	}
 	
 	/**
-	 * 
 	 * This function will take screenshot
 	 * 
 	 * @param webdriver
@@ -47,19 +49,14 @@ public class HomePageTest {
 	 * 
 	 */
 
-//	public static void takeSnapShot(WebDriver webdriver, String fileWithPath) throws Exception {
-//
-//		// Convert web driver object to TakeScreenshot
-//		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
-//		// Call getScreenshotAs method to create image file
-//		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-//		// Move image file to new destination
-//		File DestFile = new File(fileWithPath);
-//
-//		// Copy file at destination
-//
-//		FileUtils.copyFile(SrcFile, DestFile);
-//
-//	}
-
+	public static void takeSnapShot(WebDriver webdriver, String fileWithPath) throws Exception {
+		// Convert web driver object to TakeScreenshot
+		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
+		// Call getScreenshotAs method to create image file
+		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+		// Move image file to new destination
+		File DestFile = new File(fileWithPath);
+		// Copy file at destination
+		FileUtils.copyFile(SrcFile, DestFile);
+	}
 }
