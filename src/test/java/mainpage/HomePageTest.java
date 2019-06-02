@@ -18,7 +18,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -340,7 +339,6 @@ public class HomePageTest {
 	 * 
 	 */
 	private int scrollPromotionMinSlider(WebDriver driver, String sliderText, int offSet) throws InterruptedException, ParseException {
-		int result = 0;
 		WebElement labelSliderEl = driver.findElement(By.xpath("//div[@data-type='Number']//label[contains(text(),'" + sliderText + "')]"));
 		assertNotNull(labelSliderEl, "Can not find label slider element");
 		WebElement sliderParentEl = labelSliderEl.findElement(By.xpath(".."));
@@ -360,50 +358,6 @@ public class HomePageTest {
 		String valueNumber = strValue.replaceAll("[^0-9]", "");
 		return Integer.parseInt(valueNumber);
 	}
-	
-//	public void verifySlider(WebDriver driver) throws Exception {
-//		takeSnapShot(driver, "./screenshots/StepA.png");
-//		// show list slider
-//		WebElement showMoreBtn = driver.findElement(By.id("collapseSeemoreBtn"));
-//		showMoreBtn.click();
-//
-//		takeSnapShot(driver, "./screenshots/StepB.png");
-//		// find Medical expenses while traveling slider
-//		WebElement medicalEl = driver.findElement(
-//				By.xpath("//div[@data-type='Number']//label[contains(text(),'Medical expenses while traveling')]"));
-//		System.out.println(medicalEl.getText());
-//		WebElement sliderParent = medicalEl.findElement(By.xpath(".."));
-//		System.out.println(sliderParent.getTagName());
-//		WebElement slider = sliderParent.findElement(By.xpath(".//div[@class='bootstrap-slider']"));
-//		int width = slider.getSize().width;
-//		// TODO calculate xOfset to move
-//		int xOfset = 30;
-//
-//		// move min slider
-//		WebElement minSlider = sliderParent.findElement(By.xpath(
-//				".//div[@class='bootstrap-slider']//div[contains(@class, 'slider-horizontal')]//div[contains(@class, 'min-slider-handle')]"));
-//		Actions act = new Actions(driver);
-//		act.dragAndDropBy(minSlider, xOfset, 0).build().perform();
-//
-//		// TODO move max slider
-//		Thread.sleep(2000);
-//
-//		List<WebElement> cards = driver.findElements(By.xpath("//div[contains(@class, 'card-content-details')]"));
-//		System.out.println(cards.size());
-//		List<String> values = new ArrayList<String>();
-//		for (WebElement card : cards) {
-//			WebElement pEl = card
-//					.findElement(By.xpath(".//div//p[contains(text(),'Medical expenses while traveling')]"));
-//			WebElement parentEl = pEl.findElement(By.xpath(".."));
-//			WebElement valueEl = parentEl.findElement(By.xpath(".//p//strong//span"));
-//			String value = valueEl.getText();
-//			String numberOnly = value.replaceAll("[^0-9]", "");
-//			System.out.println(numberOnly);
-//			values.add(numberOnly);
-//		}
-//
-//		// TODO verify
-//	}
 	
 	/**
 	 * This function will go to "Read More" page of a result insurer
